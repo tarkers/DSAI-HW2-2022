@@ -109,10 +109,12 @@ if __name__ == "__main__":
     testing_data = load_data(args.testing)
 
     with open(args.output, 'w', encoding='UTF8', newline='') as output_file:
-        # writer = csv.writer(output_file)
-        # for row in testing_data:
+        # first day do nothing
+        output_file.write(str(0)+"\n")
         for index, row in testing_data.iterrows():
             # We will perform your action as the open price in the next day.
             action = trader.predict_action(row)
-            if index != len(testing_data.index)-1:
+            if index != len(testing_data.index)-2:
                 output_file.write(str(action)+"\n")
+            else:
+                break
